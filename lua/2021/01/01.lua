@@ -1,4 +1,8 @@
-local file = io.open("input.txt", "r")
+require('filename')
+print(filename)
+
+local file = io.open(filename, "r")
+
 
 local lines = {}
 
