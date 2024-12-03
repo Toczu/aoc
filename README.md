@@ -20,7 +20,7 @@ python -m venv <YEAR>/.venv
 
 Activate the virtualenv:
 ```sh
-source <2024>/.venv/bin/activate
+source <YEAR>/.venv/bin/activate
 ```
 
 Then install the requirements:

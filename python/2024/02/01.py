@@ -1,8 +1,9 @@
 import pathlib
+import numpy as np
 
 directory = str(pathlib.Path(__file__).parent.resolve()) + "/"
 
-file = open(directory + "puzzle_test.txt", "r")
+file = open(directory + "puzzle.txt", "r")
 lines = file.readlines()
 
 reports = []
@@ -10,17 +11,20 @@ reports = []
 for line in lines:
     report = [int(i) for i in line.split()]
     safe = True
-    print(report)
     inc = report[0] < report[1]
     for j in range(1, len(report)):
-        print(f"{report[j-1]}, {report[j]}")
         diff = report[j-1] - report[j]
-        print(diff)
-        if not (diff >= 0 and diff <= 3) and j!= 1:
+        if inc and diff > 0 or not inc and diff < 0:
             safe = False
             break
-    print(f"aaa {safe}")
+        diff = abs(diff)
+        if diff == 0:
+            safe = False
+            break
+        if not (diff >= 0 and diff <= 3):
+            safe = False
+            break
     reports.append(safe)
 
 print(reports)
-
+print(np.array(reports).sum())
